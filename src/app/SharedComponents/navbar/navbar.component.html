@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand text-danger mx-5" href="/home"><i class="fa-brands fa-shopify "></i><span class="mx-2 fw-bolder">Shopify</span></a>
+        <a class="btn btn-outline-danger" routerLink="/addproduct">Sell Now</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger " routerLink="/home" routerLinkActive="bg-danger text-light">Home</a>
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger" routerLink="/profile" routerLinkActive="bg-danger text-light">Profile</a>
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger" routerLink="/notification"routerLinkActive="bg-danger text-light">Notification</a>   
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger" routerLink="/wishlist" routerLinkActive="bg-danger text-light">Wishlist</a>
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger" routerLink="/signup" routerLinkActive="bg-danger text-light">Signup</a>          
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link text-danger" routerLink="/register" routerLinkActive="bg-danger text-light">register</a>          
+                </li>
+            </ul>
+            <a class="btn btn-outline-danger mx-1" routerLink="/signin" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</nav>

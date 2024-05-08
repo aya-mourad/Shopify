@@ -1,0 +1,62 @@
+<section>
+    <div class="container my-4">
+        <h3 class="text-danger text-center">Product Details </h3>
+        <form [formGroup]="sellForm" (ngSubmit)="sellproduct(sellForm)">
+            <div class="row">
+                <div class="col-md-8 bg-light shadow m-auto p-4 my-2">
+                    <div class="row gy-3">
+                        <div class="col-md-12">
+                            <label for="title">Title :</label>
+                            <input formControlName="title" type="text" id="title" class="form-control" [(ngModel)]="title">
+                            <div *ngIf="sellForm.get('title')?.errors && sellForm.get('title')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('title')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="sellForm.get('title')?.getError('minlength')">Min Length is 2 </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="description">Description :</label>
+                            <input formControlName="description" type="text" id="description" class="form-control" [(ngModel)]="description">
+                            <div *ngIf="sellForm.get('description')?.errors && sellForm.get('description')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('description')?.getError('required')">This field is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="categoryName">Category Name :</label>
+                            <input formControlName="categoryName" type="text" id="categoryName" class="form-control" [(ngModel)]="categoryName">
+                            <div *ngIf="sellForm.get('categoryName')?.errors && sellForm.get('categoryName')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('categoryName')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="sellForm.get('name')?.getError('minlength')">Min Length is 2 </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="price">Price :</label>
+                            <input formControlName="price" type="text" id="price" class="form-control" [(ngModel)]="price">
+                            <div *ngIf="sellForm.get('price')?.errors && sellForm.get('price')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('price')?.getError('required')">This field is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="location">location :</label>
+                            <input formControlName="location" type="text" id="location" class="form-control" [(ngModel)]="location">
+                            <div *ngIf="sellForm.get('location')?.errors && sellForm.get('location')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('location')?.getError('required')">This field is required</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="imageCover">imageCover :</label>
+                            <input formControlName="imageCover" type="text" id="imageCover" class="form-control" [(ngModel)]="imageCover">
+                            <div *ngIf="sellForm.get('imageCover')?.errors && sellForm.get('imageCover')?.touched">
+                                <p class="text-danger" *ngIf="sellForm.get('imageCover')?.getError('required')">This field is required</p>
+                            </div>
+                        </div>  
+                        <div>
+                            <button  routerLink="/home" (click)="reset()"  class="btn btn-outline-danger float-end" type="button">Cancel</button>
+                            <button [disabled]="sellForm.invalid" routerLink="/home" class="btn btn-outline-danger float-end me-3" type="submit">Share</button>
+                                                   
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

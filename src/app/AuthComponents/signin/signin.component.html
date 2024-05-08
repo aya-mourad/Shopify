@@ -1,0 +1,39 @@
+<section>
+    <div class="container my-4">
+        <h3 class="text-danger text-center">Login Form </h3>
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm)">
+            <div class="row">
+                <div class="col-md-8 bg-light shadow m-auto p-4 my-2">
+                    <div class="row gy-3">
+                        <div class="col-md-12">
+                            <label for="user_email">Email :</label>
+                            <input formControlName="email" type="email" id="user_email" class="form-control" [(ngModel)]="email">
+                            <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+                                <p class="text-danger" *ngIf="loginForm.get('email')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="loginForm.get('email')?.getError('email')">Enter a valid Email </p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <label for="user_password">Password :</label>
+                            <input formControlName="password" type="password" id="user_password" class="form-control" [(ngModel)]="password">
+                            <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+                                <p class="text-danger" *ngIf="loginForm.get('password')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="loginForm.get('password')?.getError('pattern')">Enter a valid Password </p>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- <p class="text-danger">{{errors}}</p> -->
+                            <button [disabled]="loginForm.invalid" class="btn btn-outline-danger float-end" type="submit">Login
+                                <!-- <span *ngIf="isLoading"><i class="fa-solid fa-spinner fa-spin "></i></span> -->
+                            </button>
+                        </div>
+                        <div>
+                            <p class="text-muted">I don't have an account, <a routerLink="/signup" class="text-danger">Register Now</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

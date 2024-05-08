@@ -1,0 +1,99 @@
+<!-- <form [formGroup]="signupForm" (ngSubmit)="signup()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" formControlName="name">
+      <div *ngIf="signupForm.get('name')?.errors && signupForm.get('name')?.touched">
+        <p class="text-danger" *ngIf="signupForm.get('name')?.getError('required')">This field is required</p>
+        <p class="text-danger" *ngIf="signupForm.get('name')?.getError('minlength')">Min Length is 2 </p>
+        <p class="text-danger" *ngIf="signupForm.get('name')?.getError('maxlength')">Max Length is 10</p>
+    </div>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="signupForm.get('email')?.errors && signupForm.get('email')?.touched">
+        <p class="text-danger" *ngIf="signupForm.get('email')?.getError('required')">This field is required</p>
+        <p class="text-danger" *ngIf="signupForm.get('email')?.getError('email')">Enter a valid Email </p>
+    </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password">
+        <div *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched">
+            <p class="text-danger" *ngIf="signupForm.get('password')?.getError('required')">This field is required</p>
+            <p class="text-danger" *ngIf="signupForm.get('password')?.getError('pattern')">Enter a valid Password </p>
+        </div>
+      </div>
+    <div>
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" formControlName="phone">
+      <div *ngIf="signupForm.get('phone')?.errors && signupForm.get('phone')?.touched">
+        <p class="text-danger" *ngIf="signupForm.get('phone')?.getError('required')">This field is required</p>
+        <p class="text-danger" *ngIf="signupForm.get('phone')?.getError('pattern')">Enter a valid Phone Number </p>
+    </div>
+    </div>
+    
+    <div>
+      <button [disabled]="signupForm.invalid" class="btn btn-outline-danger float-end" type="submit">Register
+      </button>
+  </div>
+  <div>
+      <p class="text-muted">Already have an account ? <a routerLink="/signin" class="text-danger">Login</a></p>
+  </div>
+  </form> -->
+  
+
+   <section>
+    <div class="container my-4">
+        <h1 class="text-danger text-center">Register Form </h1>
+        <form [formGroup]="signupForm" (ngSubmit)="signup()">
+            <div class="row">
+                <div class="col-md-8 bg-light shadow m-auto p-4 my-2">
+                    <div class="row gy-3">
+                        <div class="col-md-12">
+                            <label  for="user_name">Name :</label>
+                            <input formControlName="name" type="text" id="user_name" class="form-control">
+                            <div *ngIf="signupForm.get('name')?.errors && signupForm.get('name')?.touched">
+                                <p class="text-danger" *ngIf="signupForm.get('name')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="signupForm.get('name')?.getError('minlength')">Min Length is 2 </p>
+                                <p class="text-danger" *ngIf="signupForm.get('name')?.getError('maxlength')">Max Length is 10</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="user_email">Email :</label>
+                            <input formControlName="email" type="email" id="user_email" class="form-control" >
+                            <div *ngIf="signupForm.get('email')?.errors && signupForm.get('email')?.touched">
+                                <p class="text-danger" *ngIf="signupForm.get('email')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="signupForm.get('email')?.getError('email')">Enter a valid Email </p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <label for="user_password">Password :</label>
+                            <input formControlName="password" type="password" id="user_password" class="form-control">
+                            <div *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched">
+                                <p class="text-danger" *ngIf="signupForm.get('password')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="signupForm.get('password')?.getError('pattern')">Enter a valid Password </p>
+                            </div>
+                        </div>                     
+                        <div class="col-md-12">
+                            <label for="user_phone">Phone :</label>
+                            <input formControlName="phone" type="tel" id="user_phone" class="form-control">
+                            <div *ngIf="signupForm.get('phone')?.errors && signupForm.get('phone')?.touched">
+                                <p class="text-danger" *ngIf="signupForm.get('phone')?.getError('required')">This field is required</p>
+                                <p class="text-danger" *ngIf="signupForm.get('phone')?.getError('pattern')">Enter a valid Phone Number </p>
+                            </div>
+                        </div>
+                        <div>
+                            <button [disabled]="signupForm.invalid" class="btn btn-outline-danger float-end" type="submit">Register
+                            </button>
+                        </div>
+                        <div>
+                            <p class="text-muted">Already have an account ? <a routerLink="/signin" class="text-danger">Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
