@@ -3,16 +3,35 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/Servises/products.service';
 import { Products } from 'src/app/interfaces/products';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  
-  productD: Observable<Products| undefined>;
-  constructor(private _activated: ActivatedRoute, private details: ProductsService) {
-    let proID = _activated.snapshot.params['productId']
-    this.productD = this.details.getProductById(proID)
+  productId: string;
+  productD: Observable<Products | undefined>;
+  ratings$: Observable<any[]>;
+  feedbacks$: Observable<any[]>;
+  constructor(
+    private _activated: ActivatedRoute,
+    private details: ProductsService,
+    private firestore: AngularFirestore
+  ) {
+    this.productId = this._activated.snapshot.params['productId'];
+    this.productD = this.details.getProductById(this.productId);
+    this.ratings$ = this.firestore.collection(`products/${this.productId}/ratings`).valueChanges();
+    this.feedbacks$ = this.firestore.collection(`products/${this.productId}/ratings`).valueChanges();
+  }
+
+  submitRating(rating: number, feedback: string): void {
+    this.firestore.collection(`products/${this.productId}/ratings`).add({
+      rating: rating,
+    });
+    this.firestore.collection(`products/${this.productId}/feedbacks`).add({
+      feedback: feedback
+    })
   }
 }
