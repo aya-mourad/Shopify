@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../Servises/products.service';
 import { Products } from 'src/app/interfaces/products';
-import { Observable } from 'rxjs';
-
+import { Observable,of } from 'rxjs';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,10 +16,11 @@ export class HomeComponent{
   searchValue:string=''
   wishlistItems: any[] = [];
   productObservable:Observable<Products[]>;
- wishlistObservable: Observable<{ id: string; data: Products; }[]>;
-
+ wishlistObservable: Observable<Products[]>;
+//  private wishclear: Subscription;
 constructor(private products:ProductsService){
-  this.productObservable=this.products.getAllProducts()
+
+  this.productObservable=this.products.getAllProducts();
 
   const userId = localStorage.getItem('userId');
   const userIdAsString = userId ? userId.toString() : '';
@@ -31,6 +32,7 @@ constructor(private products:ProductsService){
   });
 
 }
+
 addToWishlist(productId: string): void {
   this.products.addToWishlist(productId);
 }

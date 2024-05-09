@@ -1,20 +1,20 @@
 <div class="container" *ngIf="productObservable | async as products; else loading">
-    <div class="m-auto"><h3 class="text-danger mb-4 mt-4"><span>My wish list</span> </h3> </div>
+    <h2 class="text-danger mb-4 mt-4 text-center" ><span>My Wishlist</span> </h2>
     <div class="row mt-3">
         
-        <div *ngFor="let item of products" class="col-md-10 m-auto my-2 bg-light shadow p-4 pt-2" >
-            <div class="row border-bottom py-2 ">
+        <div *ngFor="let item of products" class="col-md-10 m-auto my-2 bg-light shadow p-4 border " >
+            <div class="row  py-2 ">
                 <div class="col-md-2">
-                    <img [src]="item.data.imageCover" alt="img cover" class="w-100">
+                    <img [src]="item.imageCover" alt="img cover" class="w-100">
                 </div>
                 <div class="col-md-10 d-flex justify-content-between ">
                     <div>
-                        <p>{{item.data.title}}</p>
-                        <p>{{item.data.price}}</p>
+                        <p>{{item.title}}</p>
+                        <p>{{item.price}}</p>
                         <button class="btn btn-outline-danger" (click)="deleteFromWishlist(item.id)"><i class="fa-regular fa-trash-can"></i> Remove</button>
                     </div>
                     <div>
-                        <button [routerLink]="['/productdetails',item.id]" class="btn btn-danger ">View details</button>
+                        <button [routerLink]="['/productdetails',item.id]" class="btn btn-danger mb-1 ">View details</button>
                     </div>
                 </div>
 

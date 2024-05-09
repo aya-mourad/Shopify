@@ -1,5 +1,5 @@
 <div *ngIf="productObservable | async as products; else loading">
-    <div class="d-flex">
+    <div class="d-flex mt-3">
         <div class="d-flex me-3 w-25 mb-2" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                 [(ngModel)]="searchValue">
@@ -12,7 +12,7 @@
             <p>You selected: {{ selectedOption }}</p> -->
         </div>
     </div>
-    <div class="row g-2">
+    <div class="row g-2 mt-2">
         <div *ngFor="let item of products | search: searchValue" class="col-md-3 mt-2">
             <div class="product overflow-hidden p-3">
                 <div [routerLink]="['/productdetails',item.id]">
