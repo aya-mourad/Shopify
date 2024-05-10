@@ -25,7 +25,7 @@
                             </div>
                             <div class="d-flex flex-column ms-2">
                                 <div>
-                                    <h6 class='mt-2 text-danger' routerLink="/profile" >AYA Osama </h6>
+                                    <h6 class='mt-2 text-danger' routerLink="/profile">AYA Osama </h6>
                                 </div>
                                 <div>
                                     <small>01016929693</small>
@@ -36,21 +36,30 @@
                     <button class="btn btn-danger w-100 mt-3">Add To Wishlist</button>
                 </div>
                 <div style="padding: 10px;">
-                    <div *ngIf="feedbacks$ | async as feedbacks; else noFeedbacks" class="list-group">
+                    <div *ngIf="(feedbacks$ | async) as feedbacks; else noFeedbacks" class="list-group">
                         <h3>Reviews:</h3>
-                        <div *ngFor="let feedback of feedbacks" class="list-group-item">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ feedback.userName }}</h5>
-                                <p class="card-text">
-                                    {{ feedback.feedback }}
-                                </p>
+                        <div *ngIf="feedbacks.length > 0; else noFeedbacksContent">
+                            <div *ngFor="let feedback of feedbacks" class="list-group-item">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ feedback.userName }}</h5>
+                                    <p class="card-text">{{ feedback.feedback }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <ng-template #noFeedbacks>
-                        <p>No feedbacks yet.</p>
+                        <div class="list-group">
+                            <p class="list-group-item">No Reviews yet.</p>
+                        </div>
                     </ng-template>
+
+                    <ng-template #noFeedbacksContent>
+                        <div class="list-group">
+                            <p class="list-group-item">No Reviews yet.</p>
+                        </div>
+                    </ng-template>
+
                 </div>
                 <form #ratingForm="ngForm" style="padding: 10px;"
                     (ngSubmit)="submitRating(ratingForm.value.rating, ratingForm.value.feedback)">
