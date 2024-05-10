@@ -54,8 +54,8 @@
                 <form #ratingForm="ngForm"
                     (ngSubmit)="submitRating(ratingForm.value.rating, ratingForm.value.feedback)">
                     <div class="form-group">
-                        <label for="rating">Rating:</label>
-                        <select class="form-control" name="rating" ngModel>
+                        <label for="Rating">Rating:</label>
+                        <select id = "Rating" class="form-control" name="rating" ngModel>
                             <option value="1">1 Star</option>
                             <option value="2">2 Stars</option>
                             <option value="3">3 Stars</option>
@@ -64,8 +64,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="feedback">Feedback:</label>
-                        <textarea class="form-control" name="feedback" ngModel></textarea>
+                        <label for="Feedback">Feedback:</label>
+                        <textarea id = "Feedback" class="form-control" name="feedback" ngModel></textarea>
                     </div>
                     <div style="padding-top: 10px; padding-bottom: 10px;">
                         <button type="submit" class="btn btn-danger">Submit Rating</button>

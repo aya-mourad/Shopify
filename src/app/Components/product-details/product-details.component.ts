@@ -15,7 +15,7 @@ export class ProductDetailsComponent {
   productD: Observable<Products | undefined>;
   ratings$: Observable<any[]>;
   feedbacks$: Observable<any[]>;
-  userId: string ; // Add a property to store the user ID
+  userId: string | undefined ; // Add a property to store the user ID
   userName: string | undefined; // Add a property to store the user name
 
   constructor(
@@ -29,9 +29,14 @@ export class ProductDetailsComponent {
     this.feedbacks$ = this.firestore.collection(`products/${this.productId}/feedbacks`).valueChanges();
 
     // Retrieve user ID and name from local storage or authentication service
-    this.userId = localStorage.getItem('userId')!;
+    const userId = localStorage.getItem('userId');
+    this.userId = userId ? userId.toString() : '';
     this.firestore.collection('users').doc(this.userId).valueChanges().subscribe((user: any) => {
-      this.userName = user.name; // Assuming you have a 'name' field in your user document
+      if (user) {
+        this.userName = user.name; // Assuming you have a 'name' field in your user document
+      }
+      else
+        this.userName = '';
     });
   }
 
