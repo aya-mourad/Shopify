@@ -12,7 +12,6 @@ import { ChatComponent } from './Components/chat/chat.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
-import { RegisterComponent } from './AuthComponents/register/register.component';
 import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { NotificationComponent } from './Components/notification/notification.component';
@@ -41,7 +40,6 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
     NotificationComponent,
     PaymentComponent,
     SearchPipe,
-    RegisterComponent,
     AddproductComponent,
   ],
   imports: [

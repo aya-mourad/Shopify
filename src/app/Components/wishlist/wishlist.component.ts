@@ -10,7 +10,8 @@ import { Products } from 'src/app/interfaces/products';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent {
-  productObservable: Observable<{ id: string; data: Products; }[]>;
+  productObservable: Observable<Products[]>;
+
   constructor(private product:ProductsService){
     const userId = localStorage.getItem('userId');
     const userIdAsString = userId ? userId.toString() : '';
@@ -19,6 +20,7 @@ export class WishlistComponent {
     this.productObservable.subscribe(products => {
       console.log('Products:', products);
     });
+    
 }
 
 deleteFromWishlist(productId: string): void {

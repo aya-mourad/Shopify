@@ -1,18 +1,13 @@
+import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
-import  firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth'
+import { user } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +16,29 @@ export class AuthService {
 
   constructor(private http :HttpClient,private fireAuth:AngularFireAuth,private router: Router,private firestore: AngularFirestore) {}
 
-  register(email:string,password:string){
-    this.fireAuth.createUserWithEmailAndPassword(email,password).then(()=>{
+  register(email:string,password:string,name:string,phone:string,img:string){
+    this.fireAuth.createUserWithEmailAndPassword(email,password).then((userCredential)=>{
+      const user = userCredential.user;
+      const userId = user?.uid; 
+      if(userId){
+      const storeUser:user={
+        email,
+        name,
+        phone,
+        profilePicture:img,
+        authId:userId,
+      }
+      this.firestore.collection('users').doc(user.uid).set(storeUser);
       this.router.navigate(['/signin'])
+    }
     },err=>{
       alert(err.message)
       this.router.navigate(['/signup'])
     }
   )}
-  createUser(user: any): Promise<any> {
-    return this.firestore.collection('users').doc(user.uid).set(user);
-  }
+  // createUser(user: any): Promise<any> {
+  //   return this.firestore.collection('users').doc(user.uid).set(user);
+  // }
   // register(email: string, password: string, username: string, phoneNumber: string): Promise<void> {
   //   return new Promise<void>((resolve, reject) => {
   //     this.fireAuth.createUserWithEmailAndPassword(email, password)
@@ -71,15 +78,6 @@ export class AuthService {
   // }
 
 
-  // loginMethod(email:string,password:string ){
-  //   this.fireAuth.signInWithEmailAndPassword(email,password).then(()=>{
-  //     localStorage.setItem('token','true');
-  //     this.router.navigate(['/home'])
-  //   },err=>{
-  //     alert(err.message)
-  //     this.router.navigate(['/signin'])
-  //   }
-  // )}
 
   
   loginMethod(email: string, password: string) {

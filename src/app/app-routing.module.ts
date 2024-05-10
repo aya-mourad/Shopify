@@ -10,7 +10,6 @@ import { SignupComponent } from './AuthComponents/signup/signup.component';
 import { AddFeedbackComponent } from './Components/add-feedback/add-feedback.component';
 import { NotificationComponent } from './Components/notification/notification.component';
 import { PaymentComponent } from './Components/payment/payment.component';
-import { RegisterComponent } from './AuthComponents/register/register.component';
 import { AddproductComponent } from './Components/addproduct/addproduct.component';
 
  const routes: Routes = [
@@ -18,6 +17,7 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
   { path: '',component:HomeComponent},
   { path: 'home',component:HomeComponent},
   { path: 'profile',component:ProfileComponent},
+  { path: 'chat',component:ChatComponent},
   { path: 'wishlist',component:WishlistComponent},
   { path: 'notification',component:NotificationComponent},
   { path: 'payment',component:PaymentComponent},
@@ -27,7 +27,6 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
   { path: ':productdetails/:productId',component:ProductDetailsComponent},
   { path: ':name/chat',component:ChatComponent},
   { path: ':product-id/feedback',component:AddFeedbackComponent},
-  { path: ':register',component:RegisterComponent},
 ]
 
 
