@@ -1,4 +1,4 @@
-<!-- chat.component.html -->
+
 <div *ngFor="let user of users">
   <button (click)="openChat(user)">{{ user.name }}</button>
 </div>
@@ -11,3 +11,4 @@
   <textarea [(ngModel)]="newMessage"></textarea>
   <button (click)="sendMessage()">Send</button>
 </div>
+
