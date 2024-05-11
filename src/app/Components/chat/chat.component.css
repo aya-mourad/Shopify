@@ -1,0 +1,12 @@
+.container{
+    display:flex;
+    height: calc(100vh , 70px);
+}
+
+
+.messages{
+    width: 0px;
+    margin: 16px;
+    background: #a6aac4;
+    border-radius: 16px;
+}

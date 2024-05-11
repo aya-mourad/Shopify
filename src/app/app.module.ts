@@ -24,6 +24,9 @@ import { PaymentComponent } from './Components/payment/payment.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddproductComponent } from './Components/addproduct/addproduct.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,9 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
     PaymentComponent,
     SearchPipe,
     AddproductComponent,
+
+
+ 
   ],
   imports: [
     BrowserModule,

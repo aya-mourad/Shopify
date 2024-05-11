@@ -1,1 +1,13 @@
-<p>chat works!</p>
+<!-- chat.component.html -->
+<div *ngFor="let user of users">
+  <button (click)="openChat(user)">{{ user.name }}</button>
+</div>
+
+<div *ngIf="selectedUser">
+  <h3>Chatting with {{ selectedUser.name }}</h3>
+  <div *ngFor="let message of messages">
+    <p>{{ message.content }}</p>
+  </div>
+  <textarea [(ngModel)]="newMessage"></textarea>
+  <button (click)="sendMessage()">Send</button>
+</div>

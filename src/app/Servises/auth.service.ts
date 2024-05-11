@@ -8,13 +8,29 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { user } from '../interfaces/user';
+import firebase from 'firebase/compat/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http :HttpClient,private fireAuth:AngularFireAuth,private router: Router,private firestore: AngularFirestore) {}
+
+  currentUser!: firebase.User | null;
+  constructor(private http: HttpClient, private fireAuth: AngularFireAuth, private router: Router, private firestore: AngularFirestore) {
+    this.fireAuth.authState.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
+
+
+  getCurrentUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
+
+
+
+  
 
   register(email:string,password:string,name:string,phone:string,img:string){
     this.fireAuth.createUserWithEmailAndPassword(email,password).then((userCredential)=>{
@@ -102,6 +118,8 @@ export class AuthService {
         this.router.navigate(['/signin']);
       });
   }
+
+
   
 
 
