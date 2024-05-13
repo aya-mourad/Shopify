@@ -26,6 +26,25 @@ export class ProductsService {
   getProductById(productId: string): Observable<Products | undefined> {
     return this.afs.collection<Products>('product').doc(productId).valueChanges();
   }
+  // getProductById(productId: string): Observable<{ sellerID?: string, product: Products | undefined }> {
+  //   return new Observable(observer => {
+  //     const productDoc = this.afs.collection<Products>('product').doc(productId);
+  //     const productObs = productDoc.valueChanges();
+  //     const sellerIDObs = productDoc.get().pipe(
+  //       map(doc => {
+  //         const data = doc.data();
+  //         return data ? data.sellerId : undefined;
+  //       })
+  //     );
+
+  //     combineLatest([productObs, sellerIDObs]).subscribe(([product, sellerID]) => {
+  //       observer.next({ product, sellerID });
+  //       observer.complete();
+  //     }, error => {
+  //       observer.error(error);
+  //     });
+  //   });
+  // }
   addProducts(products : Products) {
     products.id = this.afs.createId();
     const userId = localStorage.getItem('userId');

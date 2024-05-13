@@ -14,7 +14,7 @@
                         <p class="text-danger">{{productDetails?.categoryName}}</p>
                         <div class="d-flex justify-content-between mb-5 ">
                             <p>{{productDetails?.price}} EGP</p>
-                            <p>{{productDetails?.ratings}} <i class="fa-solid fa-star rating-color"></i></p>
+                            <p>{{productDetails?.rating}} <i class="fa-solid fa-star rating-color"></i></p>
                         </div>
                     </div>
                     <div class="">
@@ -48,46 +48,55 @@
                         </div>
                     </div>
 
-                    <ng-template #noFeedbacks>
-                        <div class="list-group">
-                            <p class="list-group-item">No Reviews yet.</p>
-                        </div>
-                    </ng-template>
-
-                    <ng-template #noFeedbacksContent>
-                        <div class="list-group">
-                            <p class="list-group-item">No Reviews yet.</p>
-                        </div>
-                    </ng-template>
-
-                </div>
-                <form #ratingForm="ngForm" style="padding: 10px;"
-                    (ngSubmit)="submitRating(ratingForm.value.rating, ratingForm.value.feedback)">
-                    <div class="form-group">
-                        <label for="Rating">Add Rating:</label>
-                        <select id="Rating" class="form-control" name="rating" ngModel>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="Feedback">Add Review:</label>
-                        <textarea id="Feedback" class="form-control" name="feedback" ngModel></textarea>
-                    </div>
-                    <div style="padding-top: 10px; padding-bottom: 10px;">
-                        <button type="submit" class="btn btn-danger">Submit Rating</button>
-                    </div>
-                </form>
+          <ng-template #noFeedbacks>
+            <div class="list-group">
+              <p class="list-group-item">No Reviews yet.</p>
             </div>
+          </ng-template>
+
+          <ng-template #noFeedbacksContent>
+            <div class="list-group">
+              <p class="list-group-item">No Reviews yet.</p>
+            </div>
+          </ng-template>
         </div>
+        <form
+          #ratingForm="ngForm"
+          style="padding: 10px"
+          (ngSubmit)="
+            submitRating(ratingForm.value.rating, ratingForm.value.feedback)
+          "
+        >
+          <div class="form-group">
+            <label for="Rating">Add Rating:</label>
+            <select id="Rating" class="form-control" name="rating" ngModel>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="Feedback">Add Review:</label>
+            <textarea
+              id="Feedback"
+              class="form-control"
+              name="feedback"
+              ngModel
+            ></textarea>
+          </div>
+          <div style="padding-top: 10px; padding-bottom: 10px">
+            <button type="submit" class="btn btn-danger">Submit Rating</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
 <ng-template #loading>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
-    </div>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
+  </div>
 </ng-template>
