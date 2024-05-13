@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class MessagesService {
   constructor(private firestore: AngularFirestore) { }
 
-  sendMessage(chatId: string, message: { senderId: string; text: string; timestamp: Date }) {
+  sendMessage(chatId: string, message: { text: string,senderId: string; receiverId:string, timestamp: Date }) {
     return this.firestore.collection('chats').doc(chatId).collection('messages').add(message);
   }
  

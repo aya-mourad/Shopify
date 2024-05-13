@@ -1,96 +1,124 @@
-<div *ngIf="productD | async as productDetails ;else loading" class="container">
-    <div class="row my-5">
-        <div class="col-md-3">
-            <img [src]="productDetails?.imageCover" [alt]="productDetails?.title" class="w-100 ">
-        </div>
-        <div class="col-md-9">
-            <div class="layer d-flex flex-column h-100 justify-content-evenly">
-                <div>
-                    <h2>{{productDetails?.title}}</h2>
-                    <p>{{productDetails?.description}}</p>
-                </div>
-                <div>
-                    <div>
-                        <p class="text-danger">{{productDetails?.categoryName}}</p>
-                        <div class="d-flex justify-content-between mb-5 ">
-                            <p>{{productDetails?.price}} EGP</p>
-                            <p>{{productDetails?.rating}} <i class="fa-solid fa-star rating-color"></i></p>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="d-flex">
-                            <div class="">
-                                <img [src]="productDetails?.imageCover" alt="profile photo"
-                                    class="ratio ratio-1x1 rounded-circle " style="height: 40px; width: 40px;" />
-                            </div>
-                            <div*ngIf="seller | async as sellererDetails ;else loading class="d-flex flex-column ms-2" >
-                                <div>
-                                    <h6 class='mt-2 text-danger' routerLink="/profile" >AYA Osama </h6>
-                                </div>
-                                <div>
-                                    <small>01016929693</small>
-                                </div>
-                                <button class="btn btn-outline-danger" (click)="redirectToChat()">
-                                    <i class="fa-brands fa-facebook-messenger"></i>
-                                  </button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-danger w-100 mt-3">Add To Wishlist</button>
-                </div>
-                <div style="padding: 10px;">
-                    <div *ngIf="(feedbacks$ | async) as feedbacks; else noFeedbacks" class="list-group">
-                        <h3>Reviews:</h3>
-                        <div *ngIf="feedbacks.length > 0; else noFeedbacksContent">
-                            <div *ngFor="let feedback of feedbacks" class="list-group-item">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ feedback.userName }}</h5>
-                                    <p class="card-text">{{ feedback.feedback }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ng-template #noFeedbacks>
-                        <div class="list-group">
-                            <p class="list-group-item">No Reviews yet.</p>
-                        </div>
-                    </ng-template>
-
-                    <ng-template #noFeedbacksContent>
-                        <div class="list-group">
-                            <p class="list-group-item">No Reviews yet.</p>
-                        </div>
-                    </ng-template>
-
-                </div>
-                <form #ratingForm="ngForm" style="padding: 10px;"
-                    (ngSubmit)="submitRating(ratingForm.value.rating, ratingForm.value.feedback)">
-                    <div class="form-group">
-                        <label for="Rating">Add Rating:</label>
-                        <select id="Rating" class="form-control" name="rating" ngModel>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="Feedback">Add Review:</label>
-                        <textarea id="Feedback" class="form-control" name="feedback" ngModel></textarea>
-                    </div>
-                    <div style="padding-top: 10px; padding-bottom: 10px;">
-                        <button type="submit" class="btn btn-danger">Submit Rating</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div *ngIf="productD | async as productDetails; else loading" class="container">
+  <div class="row my-5">
+    <div class="col-md-3">
+      <img
+        [src]="productDetails?.imageCover"
+        [alt]="productDetails?.title"
+        class="w-100"
+      />
     </div>
+    <div class="col-md-9">
+      <div class="layer d-flex flex-column h-100 justify-content-evenly">
+        <div>
+          <h2>{{ productDetails?.title }}</h2>
+          <p>{{ productDetails?.description }}</p>
+        </div>
+        <div>
+          <div>
+            <p class="text-danger">{{ productDetails?.categoryName }}</p>
+            <div class="d-flex justify-content-between mb-5">
+              <p>{{ productDetails?.price }} EGP</p>
+              <p>
+                {{ productDetails?.rating }}
+                <i class="fa-solid fa-star rating-color"></i>
+              </p>
+            </div>
+          </div>
+          <div class="">
+            <div class="d-flex">
+              <div class="">
+                <img
+                  [src]="productDetails?.imageCover"
+                  alt="profile photo"
+                  class="ratio ratio-1x1 rounded-circle"
+                  style="height: 40px; width: 40px"
+                />
+              </div>
+              <div
+                *ngIf="seller | async as sellererDetails; else loading"
+                class="d-flex flex-column ms-2"
+              >
+                <div>
+                  <h6 class="mt-2 text-danger" routerLink="/profile">
+                    {{ sellererDetails?.name }}
+                  </h6>
+                </div>
+                <div>
+                  <small>{{ sellererDetails?.phone }} </small>
+                </div>
+                <button class="btn btn-outline-danger" [routerLink]="['/messages',productDetails.sellerId]" >
+                  <i class="fa-brands fa-facebook-messenger">{{productDetails.sellerId}}</i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-danger w-100 mt-3">Add To Wishlist</button>
+        </div>
+        <div style="padding: 10px">
+          <div
+            *ngIf="feedbacks$ | async as feedbacks; else noFeedbacks"
+            class="list-group"
+          >
+            <h3>Reviews:</h3>
+            <div *ngIf="feedbacks.length > 0; else noFeedbacksContent">
+              <div *ngFor="let feedback of feedbacks" class="list-group-item">
+                <div class="card-body">
+                  <h5 class="card-title">{{ feedback.userName }}</h5>
+                  <p class="card-text">{{ feedback.feedback }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noFeedbacks>
+            <div class="list-group">
+              <p class="list-group-item">No Reviews yet.</p>
+            </div>
+          </ng-template>
+
+          <ng-template #noFeedbacksContent>
+            <div class="list-group">
+              <p class="list-group-item">No Reviews yet.</p>
+            </div>
+          </ng-template>
+        </div>
+        <form
+          #ratingForm="ngForm"
+          style="padding: 10px"
+          (ngSubmit)="
+            submitRating(ratingForm.value.rating, ratingForm.value.feedback)
+          "
+        >
+          <div class="form-group">
+            <label for="Rating">Add Rating:</label>
+            <select id="Rating" class="form-control" name="rating" ngModel>
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="Feedback">Add Review:</label>
+            <textarea
+              id="Feedback"
+              class="form-control"
+              name="feedback"
+              ngModel
+            ></textarea>
+          </div>
+          <div style="padding-top: 10px; padding-bottom: 10px">
+            <button type="submit" class="btn btn-danger">Submit Rating</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <ng-template #loading>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
-    </div>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
+  </div>
 </ng-template>

@@ -12,27 +12,25 @@ import { NotificationComponent } from './Components/notification/notification.co
 import { PaymentComponent } from './Components/payment/payment.component';
 import { AddproductComponent } from './Components/addproduct/addproduct.component';
 
- const routes: Routes = [
+const routes: Routes = [
   // { path: '/',component:HomeComponent},
-  { path: '',component:HomeComponent},
-  { path: 'home',component:HomeComponent},
-  { path: 'profile',component:ProfileComponent},
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
   //{ path: 'chat',component:ChatComponent},
-  { path: 'wishlist',component:WishlistComponent},
-  { path: 'notification',component:NotificationComponent},
-  { path: 'payment',component:PaymentComponent},
-  { path: 'addproduct',component:AddproductComponent},
-  { path: 'signup',component:SignupComponent},
-  { path: 'signin',component:SigninComponent},
-  { path: ':productdetails/:productId',component:ProductDetailsComponent},
-  //{ path: ':name/chat',component:ChatComponent},
-  { path:'messages' , component:MessagesComponent},
-  { path: ':product-id/feedback',component:AddFeedbackComponent},
-]
-
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'notification', component: NotificationComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'addproduct', component: AddproductComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
+  { path: ':productdetails/:productId', component: ProductDetailsComponent },
+  { path: 'messages/:sellerID', component: MessagesComponent },
+  { path: ':product-id/feedback', component: AddFeedbackComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

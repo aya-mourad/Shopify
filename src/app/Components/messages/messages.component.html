@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="users-list mat-elevation-z5">
+  <!--    <div class="users-list mat-elevation-z5">
        <div class="user-list">
         <mat-list>
           <mat-list-item *ngFor="let user of users" (click)="selectUser(user.uid)">
@@ -10,13 +10,31 @@
           </mat-list-item>
         </mat-list>
       </div>
-    </div>
-    <div class="chat-container" *ngIf="selectedUserId">
-      <div *ngFor="let message of messages">
-        <p><strong>{{ message.sender === currentUserId ? 'Me' : 'Them' }}:</strong> {{ message.text }}</p>
+    </div> -->
+  <div class="chat-container" *ngIf="selectedUserId; else loading">
+    <div *ngIf="Messages | async as messages">
+      <div *ngFor="let message of messages" class="col-md-3 mt-2">
+        <p>
+          <strong
+            >{{ message.senderId === currentUserId ? "Me" : "Them" }}:</strong
+          >
+          {{ message.text }}
+        </p>
       </div>
-      <input class="sendMsg" type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message...">
-      <button (click)="sendMessage()">Send</button>
     </div>
+    <input
+      class="sendMsg"
+      type="text"
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type a message..."
+    />
+    <button (click)="sendMessage()">Send</button>
   </div>
-  
+</div>
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
+  </div>
+</ng-template>
