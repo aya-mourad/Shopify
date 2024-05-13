@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
-import { ChatComponent } from './Components/chat/chat.component';
+import { MessagesComponent } from './Components/messages/messages.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
@@ -17,7 +17,7 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
   { path: '',component:HomeComponent},
   { path: 'home',component:HomeComponent},
   { path: 'profile',component:ProfileComponent},
-  { path: 'chat',component:ChatComponent},
+  //{ path: 'chat',component:ChatComponent},
   { path: 'wishlist',component:WishlistComponent},
   { path: 'notification',component:NotificationComponent},
   { path: 'payment',component:PaymentComponent},
@@ -25,13 +25,14 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
   { path: 'signup',component:SignupComponent},
   { path: 'signin',component:SigninComponent},
   { path: ':productdetails/:productId',component:ProductDetailsComponent},
-  { path: ':name/chat',component:ChatComponent},
+  //{ path: ':name/chat',component:ChatComponent},
+  { path:'messages' , component:MessagesComponent},
   { path: ':product-id/feedback',component:AddFeedbackComponent},
 ]
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

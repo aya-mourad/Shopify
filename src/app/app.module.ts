@@ -8,7 +8,7 @@ import { SigninComponent } from './AuthComponents/signin/signin.component';
 import { SignupComponent } from './AuthComponents/signup/signup.component';
 import { HomeComponent } from './Components/home/home.component';
 import { AddFeedbackComponent } from './Components/add-feedback/add-feedback.component';
-import { ChatComponent } from './Components/chat/chat.component';
+//import { ChatComponent } from './Components/chat/chat.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
@@ -24,8 +24,9 @@ import { PaymentComponent } from './Components/payment/payment.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddproductComponent } from './Components/addproduct/addproduct.component';
-
-
+import { MatListModule } from '@angular/material/list';
+import { MessagesComponent } from './Components/messages/messages.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
     SignupComponent,
     HomeComponent,
     AddFeedbackComponent,
-    ChatComponent,
+    //ChatComponent,
     ProductDetailsComponent,
     ProfileComponent,
     WishlistComponent,
@@ -44,7 +45,8 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
     PaymentComponent,
     SearchPipe,
     AddproductComponent,
-
+    MessagesComponent,
+   
 
  
   ],
@@ -55,7 +57,9 @@ import { AddproductComponent } from './Components/addproduct/addproduct.componen
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserAnimationsModule
+    BrowserAnimationsModule ,
+    MatListModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
