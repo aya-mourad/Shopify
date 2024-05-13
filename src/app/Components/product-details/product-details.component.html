@@ -23,14 +23,14 @@
                                 <img [src]="productDetails?.imageCover" alt="profile photo"
                                     class="ratio ratio-1x1 rounded-circle " style="height: 40px; width: 40px;" />
                             </div>
-                            <div class="d-flex flex-column ms-2">
+                            <div*ngIf="seller | async as sellererDetails ;else loading class="d-flex flex-column ms-2" >
                                 <div>
                                     <h6 class='mt-2 text-danger' routerLink="/profile" >AYA Osama </h6>
                                 </div>
                                 <div>
                                     <small>01016929693</small>
                                 </div>
-                                <button class="btn btn-outline-danger" (click)="redirectToChat(u)">
+                                <button class="btn btn-outline-danger" (click)="redirectToChat()">
                                     <i class="fa-brands fa-facebook-messenger"></i>
                                   </button>
                             </div>

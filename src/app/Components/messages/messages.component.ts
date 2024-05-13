@@ -47,7 +47,7 @@ export class MessagesComponent implements OnInit{
 
     redirectToChat(user: any): void {
       // Redirect to the chat page or do any other logic here
-      this.router.navigate(['/messages', user.uid]);
+      this.router.navigate(['/', user.uid]);
     }
 
   ngOnInit(): void {
