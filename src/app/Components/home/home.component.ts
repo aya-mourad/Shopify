@@ -20,7 +20,7 @@ export class HomeComponent{
 //  private wishclear: Subscription;
 constructor(private products:ProductsService){
 
-  this.productObservable=this.products.getUnsoldProducts();
+  this.productObservable=this.products.getAllProducts();
 
   const userId = localStorage.getItem('userId');
   const userIdAsString = userId ? userId.toString() : '';
@@ -32,13 +32,6 @@ constructor(private products:ProductsService){
   });
 
 }
-// getProductObservable(isSold: boolean): Observable<any[]> {
-//   if (isSold) {
-//     return this.products.getAllProducts();
-//   } else {
-//     return this.products.getUnsoldProducts();
-//   }
-// }
 
 addToWishlist(productId: string): void {
   this.products.addToWishlist(productId);

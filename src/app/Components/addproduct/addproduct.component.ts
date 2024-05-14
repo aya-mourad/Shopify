@@ -14,14 +14,13 @@ export class AddproductComponent {
   constructor(private sell: ProductsService,private Router:Router) { }
   id: string = '';
   sellerId: string = '';
-  ratings: number = 0;
+  rating: number = 0;
   categoryName: string = '';
   description: string = '';
   price: number = 0;
   title: string = '';
   imageCover: string = '';
   location: string = '';
-  isSold:boolean=false;
 
   sellForm: FormGroup = new FormGroup({
     categoryName: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -38,11 +37,10 @@ export class AddproductComponent {
     categoryName: '',
     description: '',
     price: 0,
-    ratings: 0,
+    rating: 0,
     title: '',
     imageCover: '',
     location: '',
-    isSold:false
   };
 
   reset() {
@@ -57,11 +55,12 @@ export class AddproductComponent {
       this.productObj.categoryName = this.sellForm.get('categoryName')?.value;
       this.productObj.description = this.sellForm.get('description')?.value;
       this.productObj.price = this.sellForm.get('price')?.value;
-      this.productObj.ratings = 0;
+      this.productObj.rating = 0;
       this.productObj.title = this.sellForm.get('title')?.value;
       this.productObj.imageCover = this.sellForm.get('imageCover')?.value;
       this.productObj.location = this.sellForm.get('location')?.value;
-      this.productObj.isSold=false;
+
+
       this.sell.addProducts(this.productObj).then(() => {
         this.reset();
         this.Router.navigate(['/home'])

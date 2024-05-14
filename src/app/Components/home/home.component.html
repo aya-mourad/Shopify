@@ -5,12 +5,12 @@
             <!-- [(ngModel)]="searchValue" -->
             <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <!-- <div>
-            <select [(ngModel)]="selectedOption" class="w-100">
+        <div>
+            <!-- <select [(ngModel)]="selectedOption" class="w-100">
                 <option *ngFor="let option of options" [value]="option">{{ option }}</option>
             </select>
-            <p>You selected: {{ selectedOption }}</p>
-        </div> -->
+            <p>You selected: {{ selectedOption }}</p> -->
+        </div>
     </div>
     <div class="row g-2 mt-2">
         <div *ngFor="let item of products | search: searchValue" class="col-md-3 mt-2">
@@ -31,6 +31,10 @@
                         {{ isProductInWishlist(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist' }}
                     </button>
                 </div>
+                <!-- <button class="btn btn-danger w-100" (click)="addToWishlist(item.id)">Add To Wishlist</button> -->
+                <button  class="btn btn-danger w-100" (click)="toggleWishlist(item.id)">
+                    {{ isProductInWishlist(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist' }}
+                </button>
             </div>
         </div>
     </div>

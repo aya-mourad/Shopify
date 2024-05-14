@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable ,combineLatest} from 'rxjs';
+import { Firestore, addDoc, collection ,CollectionReference} from 'firebase/firestore';
+import { collectionData } from '@angular/fire/firestore'
 import { map,switchMap } from 'rxjs/operators';
 import { Products } from '../interfaces/products';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection ,DocumentReference} from '@angular/fire/compat/firestore';
 
 
 @Injectable({
@@ -16,12 +18,6 @@ export class ProductsService {
     const productCollection: AngularFirestoreCollection<Products> = this.afs.collection<Products>('product');
     return productCollection.valueChanges({ idField: 'id' });
   }
-  
-  getUnsoldProducts(): Observable<any[]> {
-    return this.afs.collection('product', ref => ref.where('isSold', '==', false)).valueChanges();
-  }
-
- 
 
   getProductById(productId: string): Observable<Products | undefined> {
     return this.afs.collection<Products>('product').doc(productId).valueChanges();

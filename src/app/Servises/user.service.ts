@@ -9,11 +9,14 @@ import { ProductWithFeedbackRating } from '../interfaces/ProductWithFeedbackRati
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) { }
 
+  createUser(user: any): Promise<any> {
+    return this.firestore.collection('users').doc(user.uid).set(user);
+  }
+}
   // createUser(user: any): Promise<any> {
   //   return this.firestore.collection('users').doc(user.uid).set(user);
   // }

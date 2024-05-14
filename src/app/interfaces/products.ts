@@ -4,9 +4,8 @@ export interface Products {
     categoryName:string,
     description:string,
     price:number,
-    ratings:number,
+    rating:number,
     title:string,
     imageCover:string,
     location:string
-    isSold:boolean;
 }
