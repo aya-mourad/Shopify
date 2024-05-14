@@ -1,2 +1,25 @@
-<p>profile works!</p>
-<button class="btn btn-outline-danger" routerLink="/chat"><i class="fa-brands fa-facebook-messenger"></i></button>
+<div *ngIf="productsWithFeedbackRating$ | async as products">
+
+  <div *ngFor="let product of products">
+    <img [src]="produc" alt="">
+    <h2>{{ product.title }}</h2>
+    <button class="btn btn-outline-danger" (click)="removeProductFromProfile">Already Sold?</button>
+    <p>Category: {{ product.categoryName }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Location: {{ product.location }}</p>
+    <h5 *ngIf="product.feedback && product.feedback.length > 0">Feedbacks</h5>
+    <ul *ngIf="product.feedback && product.feedback.length > 0">
+      <li *ngFor="let feedbacks of product.feedback; let i = index">
+        <div style="display: flex; justify-content: space-between;">
+          <div>{{ feedbacks.feedback }}</div>
+          <div *ngIf="product.rating[i]">
+            {{ product.rating[i].rating }} <i class="fa-solid fa-star rating-color"></i>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <button class="btn btn-outline-danger" (click)="removeProductFromProfile">Remove</button>
+
+  </div>
+</div>
