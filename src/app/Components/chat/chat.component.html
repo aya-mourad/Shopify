@@ -1,10 +1,19 @@
 <div class="container">
+  <!--    <div class="users-list mat-elevation-z5">
+       <div class="user-list">
+        <mat-list>
+          <mat-list-item *ngFor="let user of users" (click)="selectUser(user.uid)">
+            <span>{{ user.name }}</span>
+            <button mat-icon-button color="primary" (click)="redirectToChat(user)">
+              <mat-icon>chat</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div> -->
   <div class="chat-container" *ngIf="selectedUserId; else loading">
     <div *ngIf="Messages | async as messages">
-      <div
-        *ngFor="let message of messages"
-        class="col-md-10 m-auto my-2 bg-light shadow p-4 border"
-      >
+      <div *ngFor="let message of messages" class="col-md-3 mt-2">
         <p>
           <strong
             >{{ message.senderId === currentUserId ? "Me" : "Them" }}:</strong
@@ -14,13 +23,13 @@
       </div>
     </div>
     <input
-      class="sendMsg w-100"
+      class="sendMsg"
       type="text"
       [(ngModel)]="newMessage"
       (keyup.enter)="sendMessage()"
       placeholder="Type a message..."
     />
-    <button (click)="sendMessage()" class="btn btn-danger w-20">Send</button>
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
 

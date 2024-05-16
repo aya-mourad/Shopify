@@ -18,7 +18,10 @@
             <div class=" d-flex justify-content-between">
               <h5 class="text-danger">{{ product.title }}</h5>
               <!-- <button class="btn btn-outline-danger" (click)="updateIsSoldFromProfile(product.productId)">Already Sold?</button> -->
-              <button class="btn btn-outline-danger" (click)="updateIsSoldFromProfile(product.productId)"> Already Sold?</button>
+              <button [ngClass]="{'btn': true, 'btn-outline-danger': !product.isSold, 'btn-danger': product.isSold}"
+                class="btn" (click)="updateIsSoldFromProfile(product.productId)">
+                Already Sold?
+              </button>
             </div>
             <!-- <p>{{product.productId}}</p>   -->
             <p>Category: {{ product.categoryName }}</p>
@@ -30,8 +33,8 @@
               <li *ngFor="let feedbacks of product.feedback; let i = index">
                 <div style="display: flex; justify-content: space-between;">
                   <div>{{ feedbacks.feedback }}</div>
-                  <div *ngIf="product.ratings[i]">
-                    {{ product.ratings[i].rating }} <i class="fa-solid fa-star rating-color"></i>
+                  <div *ngIf="product.rating[i]">
+                    {{ product.rating[i].rating }} <i class="fa-solid fa-star rating-color"></i>
                   </div>
                 </div>
               </li>
