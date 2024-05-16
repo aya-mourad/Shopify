@@ -92,9 +92,6 @@ export class AuthService {
   //       });
   //   });
   // }
-
-
-
   
   loginMethod(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password)

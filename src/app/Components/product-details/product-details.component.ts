@@ -49,7 +49,7 @@ export class ProductDetailsComponent {
       .valueChanges()
       .subscribe((user: any) => {
         if (user) {
-          this.userName = user.name; // Assuming you have a 'name' field in your user document
+          this.userName = user.name; 
         } else this.userName = '';
       });
   }

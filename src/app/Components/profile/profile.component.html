@@ -1,1 +1,54 @@
-<p>profile works!</p>
+<div *ngIf="userD | async as userDetails ;else loading" class='container mt-3'>
+  <div class="row">
+    <div class="col-md-4 profileContainer">
+      <div class='position-fixed'>
+        <div class=" photo ratio ratio-1x1">
+          <img [src]="userDetails.profilePicture" alt="profile photo" class=" rounded-circle " />
+        </div>
+        <div class=" mt-2 d-flex">
+          <h2 class="me-3 text-danger">{{userDetails.name}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="pt-3 col-md-6 ">
+      <div class="row products ">
+        <div *ngIf="productsWithFeedbackRating$ | async as products">
+          <div *ngFor="let product of products" class="col-md-12 border p-4">
+            <img [src]="product.imageCover" alt="Product cover" class="mb-2 w-100">
+            <div class=" d-flex justify-content-between">
+              <h5 class="text-danger">{{ product.title }}</h5>
+              <!-- <button class="btn btn-outline-danger" (click)="updateIsSoldFromProfile(product.productId)">Already Sold?</button> -->
+              <button class="btn btn-outline-danger" (click)="updateIsSoldFromProfile(product.productId)"> Already Sold?</button>
+            </div>
+            <!-- <p>{{product.productId}}</p>   -->
+            <p>Category: {{ product.categoryName }}</p>
+            <p>Description: {{ product.description }}</p>
+            <p>Price: {{ product.price }}</p>
+            <p>Location: {{ product.location }}</p>
+            <h5 *ngIf="product.feedback && product.feedback.length > 0">Feedbacks</h5>
+            <ul *ngIf="product.feedback && product.feedback.length > 0">
+              <li *ngFor="let feedbacks of product.feedback; let i = index">
+                <div style="display: flex; justify-content: space-between;">
+                  <div>{{ feedbacks.feedback }}</div>
+                  <div *ngIf="product.ratings[i]">
+                    {{ product.ratings[i].rating }} <i class="fa-solid fa-star rating-color"></i>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="btn btn-outline-danger" (click)="removeProductFromProfile(product.productId)">Remove</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<ng-template #loading>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
+  </div>
+</ng-template>

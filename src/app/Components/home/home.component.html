@@ -1,38 +1,65 @@
 <div *ngIf="productObservable | async as products; else loading">
-    <div class="d-flex mt-3">
-        <div class="d-flex me-3 w-25 mb-2" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                [(ngModel)]="searchValue">
-            <button class="btn btn-outline-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <div>
-            <!-- <select [(ngModel)]="selectedOption" class="w-100">
+  <div class="d-flex mt-3">
+    <div class="d-flex me-3 w-25 mb-2" role="search">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        [(ngModel)]="searchValue"
+      />
+
+      <button class="btn btn-outline-danger" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+    <div>
+      <!-- <select [(ngModel)]="selectedOption" class="w-100">
                 <option *ngFor="let option of options" [value]="option">{{ option }}</option>
             </select>
             <p>You selected: {{ selectedOption }}</p> -->
-        </div>
     </div>
-    <div class="row g-2 mt-2">
-        <div *ngFor="let item of products | search: searchValue" class="col-md-3 mt-2">
-            <div class="product overflow-hidden p-3">
-                <div [routerLink]="['/productdetails',item.id]">
-                    <img [src]="item.imageCover" [alt]="item.title" class="w-100 ">
-                    <p class="">{{item.title.split(' ').slice(0, 2).join(' ')}}</p>
-                    <div class="d-flex justify-content-between mt-2">
-                        <p>{{item.price}} EGP</p>
-                        <p>{{item.rating}} <i class="fa-solid fa-star rating-color"></i></p>
-                    </div>
-                </div>
-                <!-- <button class="btn btn-danger w-100" (click)="addToWishlist(item.id)">Add To Wishlist</button> -->
-                <button  class="btn btn-danger w-100" (click)="toggleWishlist(item.id)">
-                    {{ isProductInWishlist(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist' }}
-                </button>
+  </div>
+  <div class="row g-2 mt-2">
+    <div
+      *ngFor="let item of products | search : searchValue"
+      class="col-md-3 mt-2"
+    >
+      <div *ngIf="!item.isSold">
+        <div class="product overflow-hidden p-3">
+          <div [routerLink]="['/productdetails', item.id]">
+            <img [src]="item.imageCover" [alt]="item.title" class="w-100" />
+            <div class="d-flex justify-content-between mt-2">
+              <p class="">{{ item.title.split(" ").slice(0, 3).join(" ") }}</p>
+              <p>{{ item.price }} EGP</p>
+              <!-- <p>{{item.ratings}} <i class="fa-solid fa-star rating-color"></i></p> -->
             </div>
+            <p>Category: {{ item.categoryName }}</p>
+            <p>Location: {{ item.location }}</p>
+            <!-- </div> -->
+            <!-- <button class="btn btn-danger w-100" (click)="addToWishlist(item.id)">Add To Wishlist</button> -->
+            <!-- <button class="btn btn-danger w-100" (click)="toggleWishlist(item.id)">
+                        {{ isProductInWishlist(item.id) ? 'Remove from Wishlist' : 'Add to Wishlist' }}
+                    </button> -->
+          </div>
+          <!-- <button class="btn btn-danger w-100" (click)="addToWishlist(item.id)">Add To Wishlist</button> -->
+          <button
+            class="btn btn-danger w-100"
+            (click)="toggleWishlist(item.id)"
+          >
+            {{
+              isProductInWishlist(item.id)
+                ? "Remove from Wishlist"
+                : "Add to Wishlist"
+            }}
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <ng-template #loading>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
-    </div>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <i class="fa-solid fa-spinner fa-spin text-danger fa-6x"></i>
+  </div>
 </ng-template>

@@ -8,4 +8,5 @@ export interface Products {
     title:string,
     imageCover:string,
     location:string
+    isSold:boolean;
 }

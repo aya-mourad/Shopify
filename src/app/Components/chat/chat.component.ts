@@ -9,20 +9,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { message } from 'src/app/interfaces/message';
 import { of } from 'rxjs';
-
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css'],
-  // providers: [
-  //   {
-  //     provide: NG_VALUE_ACCESSOR,
-  //     useExisting: MessagesComponent,
-  //     multi: true,
-  //   },
-  // ],
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css'],
 })
-export class MessagesComponent implements OnInit {
+export class ChatComponent {
   // currentUser: FirebaseUser | null = null;
   currentUserId: string = ''; // Should be set from authentication
   selectedUserId: string = '';
@@ -43,7 +35,7 @@ export class MessagesComponent implements OnInit {
     private _activated: ActivatedRoute,
     private router: Router
   ) {
-    console.log('hello iam message');
+    // console.log('hello iam message');
     const userId = localStorage.getItem('userId');
     const userIdAsString = userId ? userId.toString() : '';
     this.currentUserId = userIdAsString;
@@ -51,25 +43,20 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('hello iam message');
-    // this.users$ = this.firestore.collection('users').valueChanges();
-    // this.userService.getCurrentUser().subscribe((user) => {
-    //   this.currentUser = user;
-    //   this.currentUserId = user?.uid ?? 'Anonymous';
-    // });
-    // this.loadUsers();
+    // console.log('hello iam message');
     this.loadMessages();
   }
 
   loadMessages(): void {
     // if (!this.selectedUserId) return;
-    console.log('hello iam message');
+    console.log('loading messages');
     const chatId = [this.currentUserId, this.selectedUserId].sort().join('_');
     const chatDoc = this.firestore.collection('chats').doc(chatId);
 
     // Check if the chat exists
     chatDoc.get().subscribe((chatSnapshot) => {
       if (!chatSnapshot.exists) {
+        console.log(' new chat');
         // If the chat doesn't exist, create it
         chatDoc.set({
           participants: [this.currentUserId, this.selectedUserId],
@@ -77,16 +64,6 @@ export class MessagesComponent implements OnInit {
       }
     });
 
-    // Load messages
-    // this.messages = []; // Clear previous messages
-    // this.firestore
-    //   .collection(`chats/${chatId}/messages`, (ref) =>
-    //     ref.orderBy('timestamp', 'asc')
-    //   )
-    //   .valueChanges()
-    //   .subscribe((messages: any[]) => {
-    //     this.messages = messages;
-    //   });
     this.Messages = this.messageService.getMessages(chatId);
   }
 
@@ -100,15 +77,18 @@ export class MessagesComponent implements OnInit {
       receiverId: this.selectedUserId,
       timestamp: new Date(),
     };
+    console.log('sending msg');
+    console.log(messageData);
+    // this.messageService.sendMessage(chatId, messageData);
+    this.firestore
+      .collection('chats')
+      .doc(chatId)
+      .collection('messages')
+      .add(messageData)
+      .then(() => {
+        this.newMessage = '';
+      });
 
-    this.messageService.sendMessage(chatId, messageData);
-    // this.firestore
-    //   .collection('chats')
-    //   .doc(chatId)
-    //   .collection('messages')
-    //   .add(messageData)
-    //   .then(() => {
-    //     this.newMessage = '';
-    //   });
+    this.messageService.createChatNotification(this.selectedUserId);
   }
 }

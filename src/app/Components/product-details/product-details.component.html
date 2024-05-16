@@ -46,13 +46,18 @@
                 <div>
                   <small>{{ sellererDetails?.phone }} </small>
                 </div>
-                <button class="btn btn-outline-danger" [routerLink]="['/messages',productDetails.sellerId]" >
-                  <i class="fa-brands fa-facebook-messenger">{{productDetails.sellerId}}</i>
+                <button
+                  class="btn btn-outline-danger"
+                  [routerLink]="['/chat', productDetails.sellerId]"
+                >
+                  <i class="fa-brands fa-facebook-messenger">{{
+                    productDetails.sellerId
+                  }}</i>
                 </button>
               </div>
             </div>
           </div>
-          <button class="btn btn-danger w-100 mt-3">Add To Wishlist</button>
+          <!-- <button class="btn btn-danger w-100 mt-3">Add To Wishlist</button> -->
         </div>
         <div style="padding: 10px">
           <div

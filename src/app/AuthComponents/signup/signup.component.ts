@@ -30,7 +30,7 @@ registerSubmit(Form:FormGroup ){
     this.password=''
     this.name=''
     this.phone=''
-    this.profilePicture=''
+    this.profilePicture="https://res.cloudinary.com/dnem3okap/image/upload/v1715689285/nqwlbqa4c4n8msxfy36b.png"
   }
 }
 }

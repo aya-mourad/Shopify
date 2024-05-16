@@ -7,11 +7,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
-  styleUrls: ['./addproduct.component.css']
+  styleUrls: ['./addproduct.component.css'],
 })
 export class AddproductComponent {
-
-  constructor(private sell: ProductsService,private Router:Router) { }
+  constructor(private sell: ProductsService, private Router: Router) {}
   id: string = '';
   sellerId: string = '';
   rating: number = 0;
@@ -21,11 +20,18 @@ export class AddproductComponent {
   title: string = '';
   imageCover: string = '';
   location: string = '';
+  isSold: boolean = false;
 
   sellForm: FormGroup = new FormGroup({
-    categoryName: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+    categoryName: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
     description: new FormControl(null, [Validators.required]),
-    title: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+    title: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
     price: new FormControl(null, [Validators.required]),
     imageCover: new FormControl(null, [Validators.required]),
     location: new FormControl(null, [Validators.required]),
@@ -41,6 +47,7 @@ export class AddproductComponent {
     title: '',
     imageCover: '',
     location: '',
+    isSold: false,
   };
 
   reset() {
@@ -57,19 +64,21 @@ export class AddproductComponent {
       this.productObj.price = this.sellForm.get('price')?.value;
       this.productObj.rating = 0;
       this.productObj.title = this.sellForm.get('title')?.value;
-      this.productObj.imageCover = this.sellForm.get('imageCover')?.value;
+      this.productObj.imageCover = "https://res.cloudinary.com/dnem3okap/image/upload/v1715689505/zypczeemmmzs9mtcnyny.jpg"
       this.productObj.location = this.sellForm.get('location')?.value;
+      this.productObj.isSold = false;
 
-
-      this.sell.addProducts(this.productObj).then(() => {
-        this.reset();
-        this.Router.navigate(['/home'])
-      }).catch(error => {
-        console.error('Error adding product:', error);
-      });
+      this.sell
+        .addProducts(this.productObj)
+        .then(() => {
+          this.reset();
+          this.Router.navigate(['/home']);
+        })
+        .catch((error) => {
+          console.error('Error adding product:', error);
+        });
     } else {
       console.log('Form is invalid');
     }
   }
 }
-

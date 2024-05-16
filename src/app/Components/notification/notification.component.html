@@ -1,1 +1,11 @@
-<p>notification works!</p>
+<div *ngIf="Notifications | async as notifications">
+  <div
+    *ngFor="let notification of notifications"
+    class="col-md-10 m-auto my-2 bg-light shadow p-4 border"
+  >
+    <div [routerLink]="['/chat', notification.senderId]">
+      <div>{{ notification.text }}</div>
+      <!-- <small>{{ notification.timestamp }}</small> -->
+    </div>
+  </div>
+</div>

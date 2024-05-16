@@ -16,18 +16,18 @@ import { NavbarComponent } from './SharedComponents/navbar/navbar.component';
 import { NotfoundComponent } from './Components/notfound/notfound.component';
 import { NotificationComponent } from './Components/notification/notification.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import {AngularFireModule} from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddproductComponent } from './Components/addproduct/addproduct.component';
 import { MatListModule } from '@angular/material/list';
-import { MessagesComponent } from './Components/messages/messages.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { ChatComponent } from './Components/chat/chat.component';
+// import { SellerDashboardComponent } from './Components/seller-dashboard/seller-dashboard.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,10 +45,9 @@ import { MatIconModule } from '@angular/material/icon';
     PaymentComponent,
     SearchPipe,
     AddproductComponent,
-    MessagesComponent,
-   
+    ChatComponent,
 
- 
+
   ],
   imports: [
     BrowserModule,
@@ -57,11 +56,11 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserAnimationsModule ,
+    BrowserAnimationsModule,
     MatListModule,
     MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
